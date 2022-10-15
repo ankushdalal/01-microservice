@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.microservices.udemy.user.User;
+import com.microservices.udemy.user.Exception.UserNotFoundException;
 import com.microservices.udemy.user.dao.UserDAOService;
 
 @RestController
@@ -31,7 +32,12 @@ public class UserConreoller {
 
 	@GetMapping("/users/{id}")
 	public User findUserByID(@PathVariable int id) {
-		return userdao.findById(id);
+		 User user = userdao.findById(id);
+		 
+		 if(user == null) {
+			 throw new UserNotFoundException(" User is not found for id : " + id);
+		 }
+		 return user;
 	}
 
 //	@PostMapping("/addUser")
