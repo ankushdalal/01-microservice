@@ -2,6 +2,7 @@ package com.microservices.udemy.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +32,14 @@ public class UserConreoller {
 		return userdao.findById(id);
 	}
 
+//	@PostMapping("/addUser")
+//	public void addUSer(@RequestBody User user) {
+//		userdao.addUser(user);
+//	}
+	
 	@PostMapping("/addUser")
-	public void addUSer(@RequestBody User user) {
+	public ResponseEntity<User> addUSer(@RequestBody User user) {
 		userdao.addUser(user);
+		return ResponseEntity.created(null).build();
 	}
 }
