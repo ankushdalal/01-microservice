@@ -1,5 +1,6 @@
 package com.microservices.udemy.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.microservices.udemy.user.User;
 import com.microservices.udemy.user.dao.UserDAOService;
@@ -36,10 +38,12 @@ public class UserConreoller {
 //	public void addUSer(@RequestBody User user) {
 //		userdao.addUser(user);
 //	}
-	
-	@PostMapping("/addUser")
+
+	@PostMapping("/users")
 	public ResponseEntity<User> addUSer(@RequestBody User user) {
-		userdao.addUser(user);
-		return ResponseEntity.created(null).build();
+		User addedUser = userdao.addUser(user);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(addedUser.getId()).toUri();
+		return ResponseEntity.created(location).build();
 	}
 }
