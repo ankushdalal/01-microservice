@@ -19,12 +19,12 @@ import com.microservices.udemy.user.Exception.UserNotFoundException;
 import com.microservices.udemy.user.dao.UserDAOService;
 
 @RestController
-public class UserConreoller {
+public class UserController {
 
 	private UserDAOService userdao;
 
 	// Constructor Injection
-	public UserConreoller(UserDAOService userdao) {
+	public UserController(UserDAOService userdao) {
 		this.userdao = userdao;
 	}
 
