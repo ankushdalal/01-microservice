@@ -1,8 +1,12 @@
-package com.microservices.udemy.versioning;
+package com.microservices.udemy.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.microservices.udemy.versioning.Name;
+import com.microservices.udemy.versioning.PersonV1;
+import com.microservices.udemy.versioning.PersonV2;
 
 @RestController
 public class VersioningController {
