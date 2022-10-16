@@ -1,1 +1,3 @@
+com\microservices\udemy\bean\HelloWorldBean.class
 com\microservices\udemy\Application.class
+com\microservices\udemy\controller\HelloWorldController.class
